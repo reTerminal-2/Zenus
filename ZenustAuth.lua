@@ -1,4 +1,6 @@
 local KeyValid,KeyPremium, KeysystemLibrary, KeyGuardLibrary = false,false,loadstring(game:HttpGet("https://raw.githubusercontent.com/OopssSorry/LuaU-Free-Key-System-UI/main/source.lua"))(),loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
+local trueData = "70737d49ffaa4aa28d014ba8bbc0da62"
+local falseData = "1258091e97a3458c84c440f88af445cd"
 
 KeyGuardLibrary.Set({
     publicToken = "3037d69764ca4f72a806612a5bde53b1",
