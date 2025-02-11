@@ -1,62 +1,31 @@
-local KeyGuardLibrary = loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
-local trueData = "f63a63d9fbf544f7b529be193de5cb67"
-local falseData = "ebf8f9d5d4524711b05ee908aaf3272d"
+local KeyValid,KeyPremium, KeysystemLibrary, KeyGuardLibrary = false,false,loadstring(game:HttpGet("https://raw.githubusercontent.com/OopssSorry/LuaU-Free-Key-System-UI/main/source.lua"))(),loadstring(game:HttpGet("https://cdn.keyguardian.org/library/v1.0.0.lua"))()
 
 KeyGuardLibrary.Set({
-  publicToken = "3037d69764ca4f72a806612a5bde53b1",
-  privateToken = "8fc8ccfb6350438cbad6624e23cf3b6c",
-  trueData = trueData,
-  falseData = falseData,
-})
+    publicToken = "3037d69764ca4f72a806612a5bde53b1",
+    privateToken = "8fc8ccfb6350438cbad6624e23cf3b6c",
+    trueData = trueData,
+    falseData = falseData,
+  })
+local KSresponse = KeysystemLibrary:Init({
+	Title="Zenus Internal | Authenticator",  -- TITLE HERE
+	
+	SaveKey=true, 
+	Debug=false, 
+	Link=KeyGuardLibrary.getLink(), 
+	Verify=function(key) 
+		if KeyGuardLibrary.validateDefaultKey(key) then
+			KeyValid=true
+		elseif KeyGuardLibrary.validatePremiumKey(key) then
+			KeyValid,KeyPremium=true,true
+		end;
+		return KeyValid
+	end,
+}) 
 
-local Fluent = loadstring(game:HttpGet("https://github.com/dawid-scripts/Fluent/releases/latest/download/main.lua"))()
-local key = ""
-
-local Window = Fluent:CreateWindow({
-    Title = "Zenus Internal | Authenticator",
-    SubTitle = "Zenus Internal V1",
-    TabWidth = 160,
-    Size = UDim2.fromOffset(580, 340),
-    Acrylic = false,
-    Theme = "Dark",
-    MinimizeKey = Enum.KeyCode.LeftControl
-})
-
-local Tabs = {
-    KeySys = Window:AddTab({ Title = "Key System", Icon = "key" }),
-}
-
-local Entkey = Tabs.KeySys:AddInput("Input", {
-    Title = "Enter Key",
-    Description = "Enter Key Here",
-    Default = "",
-    Placeholder = "Enter key…",
-    Numeric = false,
-    Finished = false,
-    Callback = function(Value)
-        key = Value
-    end
-})
-
-local Checkkey = Tabs.KeySys:AddButton({
-    Title = "Check Key",
-    Description = "Enter Key before pressing this button",
-    Callback = function()
-        local response = KeyGuardLibrary.validateDefaultKey(key)
-        if response == trueData then
+-- return nil on closing key system
+if not KSresponse or not KeyValid then return end 
 loadstring(game:HttpGet("https://raw.githubusercontent.com/nikoladhima/Internal-executor-UI/refs/heads/main/Internal-executor-UI"))()  
-              else
-           print("Key is invalid")
-        end
-    end
-})
-
-local Getkey = Tabs.KeySys:AddButton({
-    Title = "Get Key",
-    Description = "Get Key here",
-    Callback = function()
-       setclipboard(KeyGuardLibrary.getLink())
-    end
-})
-
-Window:SelectTab(1)
+-- Example of checking is user have a premium:
+if KeyPremium then
+	print("Key is premium!")
+end
