@@ -44,8 +44,7 @@ local Checkkey = Tabs.KeySys:AddButton({
     Callback = function()
         local response = KeyGuardLibrary.validateDefaultKey(key)
         if response == trueData then
-        loadstring(game:HttpGet("https://raw.githubusercontent.com/reTerminal-2/Zenus/refs/heads/main/ZenusInternal.lua"))()
-        else
+loadstring(game:HttpGet("https://raw.githubusercontent.com/nikoladhima/Internal-executor-UI/refs/heads/main/Internal-executor-UI"))()        else
            print("Key is invalid")
         end
     end
