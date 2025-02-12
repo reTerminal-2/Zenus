@@ -26,7 +26,7 @@ local KSresponse = KeysystemLibrary:Init({
 
 -- return nil on closing key system
 if not KSresponse or not KeyValid then return end 
-loadstring(game:HttpGet("https://raw.githubusercontent.com/nikoladhima/Internal-executor-UI/refs/heads/main/Internal-executor-UI"))()  
+loadstring(game:HttpGet("https://raw.githubusercontent.com/reTerminal-2/Zenus/refs/heads/main/ZenusInternal.lua"))()  
 -- Example of checking is user have a premium:
 if KeyPremium then
 	print("Key is premium!")
